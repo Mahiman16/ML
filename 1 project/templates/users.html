@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registered Users</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #00ffcc;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 36px;
+      text-shadow: 0 0 12px #00ffcc;
+    }
+
+    .user-table {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .user-table th, .user-table td {
+      padding: 16px 20px;
+      border: 1px solid #00ffcc;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .user-table th {
+      background-color: #111;
+      color: #00ffcc;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    .user-table tr:hover {
+      background-color: rgba(0, 255, 204, 0.1);
+      transition: background 0.3s ease-in-out;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+
+      .user-table {
+        font-size: 14px;
+      }
+
+      .user-table th, .user-table td {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Registered Users</h1>
+
+  <table class="user-table">
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</body>
+</html>

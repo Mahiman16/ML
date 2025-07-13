@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historical Predictions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #00ffcc;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 15px #00ffcc;
+    }
+
+    form {
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: 2px solid #00ffcc;
+      border-radius: 6px;
+      width: 250px;
+      background: #111;
+      color: #00ffcc;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #00ffcc;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00e6b8;
+      transform: scale(1.05);
+    }
+
+    table {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+    }
+
+    th, td {
+      border: 1px solid #00ffcc;
+      padding: 12px;
+      color: #fff;
+    }
+
+    th {
+      background-color: #111;
+      text-shadow: 0 0 6px #00ffcc;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1c1c1c;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #111;
+    }
+
+    td {
+      font-size: 15px;
+    }
+
+    .no-results {
+      margin-top: 20px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>HISTORICAL PREDICTIONS</h1>
+
+  <!-- Filter Form -->
+  <form method="POST">
+    <label for="brand_name_filter">Filter by Brand:</label>
+    <input type="text" name="brand_name_filter" placeholder="e.g. Honda" value="{{ request.form.brand_name_filter }}">
+    <button type="submit">Filter</button>
+  </form>
+
+  {% if historical_data %}
+  <table>
+    <tr>
+      <th>Brand Name</th>
+      <th>Owner</th>
+      <th>Kms Driven</th>
+      <th>Age</th>
+      <th>Power</th>
+      <th>Prediction (₹)</th>
+    </tr>
+    {% for prediction in historical_data %}
+    <tr>
+      <td>{{ prediction['brand_name'] }}</td>
+      <td>{{ prediction['owner'] }}</td>
+      <td>{{ prediction['kms_driven'] }}</td>
+      <td>{{ prediction['age'] }}</td>
+      <td>{{ prediction['power'] }}</td>
+      <td>{{ prediction['predicted_price'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p class="no-results">No records found for the selected brand.</p>
+  {% endif %}
+
+</body>
+</html>

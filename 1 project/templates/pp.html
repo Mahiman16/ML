@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bike Price Prediction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #00ffcc;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #000;
+      padding: 20px;
+      text-align: center;
+      color: #00ffcc;
+      font-size: 2rem;
+      text-shadow: 0 0 10px #00ffcc;
+      border-bottom: 2px solid #00ffcc;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00ffcc;
+      text-shadow: 0 0 8px #00ffcc;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #e0f7fa;
+    }
+
+    .form-container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .form-container select,
+    .form-container input {
+      width: 100%;
+      padding: 12px;
+      background: #111;
+      color: #fff;
+      border: 2px solid #00ffcc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #00e6b8;
+      transform: scale(1.02);
+    }
+
+    .Prediction {
+      width: 100%;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .Prediction h2 {
+      color: #00ffcc;
+      font-size: 22px;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+
+    footer {
+      text-align: center;
+      color: #00ffcc;
+      padding: 20px;
+      margin-top: 40px;
+      border-top: 2px solid #00ffcc;
+      background-color: #000;
+    }
+
+    @media screen and (max-width: 600px) {
+      main {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Bike Price Prediction
+  </header>
+
+  <main>
+    <section class="description">
+      <h2>Welcome to the Bike Price Prediction Tool!</h2>
+      <p>This website helps you estimate the value of your used bike based on various factors.</p>
+    </section>
+
+    <section class="form-container">
+      <h3>Enter Bike Details</h3>
+      <form action="{{ url_for('predict') }}" method="post">
+
+        <label for="brand">Brand:</label>
+        <select name="brand_name" required>
+          <option value="Royal Enfield">Royal Enfield</option>
+          <option value="KTM">KTM</option>
+          <option value="Bajaj">Bajaj</option>
+          <option value="Harley">Harley-Davidson</option>
+          <option value="Yamaha">Yamaha</option>
+          <option value="Honda">Honda</option>
+          <option value="Suzuki">Suzuki</option>
+          <option value="TVS">TVS</option>
+          <option value="Kawasaki">Kawasaki</option>
+          <option value="Hyosung">Hyosung</option>
+          <option value="Benelli">Benelli</option>
+          <option value="Mahindra">Mahindra</option>
+          <option value="Triumph">Triumph</option>
+          <option value="Ducati">Ducati</option>
+          <option value="BMW">BMW</option>
+          <option value="Rajdoot">Rajdoot</option>
+          <option value="Indian">Indian</option>
+          <option value="LML">LML</option>
+          <option value="Yezdi">Yezdi</option>
+          <option value="MV">MV</option>
+          <option value="Ideal">Ideal</option>
+        </select>
+
+        <label for="owner">Owner:</label>
+        <select name="owner" required>
+          <option value="1">First owner</option>
+          <option value="2">Second owner</option>
+          <option value="3">Third owner</option>
+          <option value="4">Fourth owner</option>
+        </select>
+
+        <label for="age">Age:</label>
+        <input type="text" name="age" required>
+
+        <label for="power">Power:</label>
+        <input type="text" name="power" required>
+
+        <label for="kms_driven">Kms Driven:</label>
+        <input type="text" name="kms_driven" required>
+
+        <button type="submit">Predict Price</button>
+      </form>
+    </section>
+
+    <div class="Prediction">
+      <h2>Bike Price is: ₹{{ prediction }}</h2>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Bike Price Predictor. All rights reserved.
+  </footer>
+</body>
+</html>
